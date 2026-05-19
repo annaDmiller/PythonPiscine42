@@ -1,8 +1,14 @@
+"""Take a single string argument and displays the sums of its upper-case characters, 
+lower-case characters, punctuation characters, digits, and spaces."""
+
 import sys as sys
 
-#add ___doc___
-
 def main():
+    """Read one input string and print character category counts.
+
+    If more than one argument is provided, print an AssertionError message.
+    If no argument is provided, prompt the user and read from standard input.
+    """
     PUNCT = r"""!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"""
 
     args = sys.argv[1:]
