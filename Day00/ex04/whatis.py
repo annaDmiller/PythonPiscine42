@@ -5,11 +5,11 @@ num_args = len(args)
 
 if num_args > 1:
     print("AssertionError: more than one argument is provided")
-    exit(1)
+    sys.exit(1)
 
 if num_args == 0:
     print("")
-    exit(0)
+    sys.exit(0)
 
 i = 0
 while i < len(args[0]):
@@ -19,7 +19,7 @@ while i < len(args[0]):
             i += 1
             continue
         print("AssertionError: argument is not an integer")
-        exit(1)
+        sys.exit(1)
 
     i += 1
 
