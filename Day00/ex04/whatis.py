@@ -14,7 +14,6 @@ if num_args == 0:
 i = 0
 while i < len(args[0]):
     char = args[0][i]
-    
     if char < '0' or char > '9':
         if char == '-' and i == 0:
             i += 1
