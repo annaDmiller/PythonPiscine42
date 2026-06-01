@@ -1,8 +1,5 @@
 import sys as sys
 
-def check_limit(limit):
-    return lambda str : len(str) > limit
-
 def main():
     args = sys.argv[1:]
     args_num = len(args)
@@ -21,10 +18,10 @@ def main():
         print("AssertionError: the arguments are bad")
         sys.exit(1)
 
-    list_words = args[0].split()
-    sort_limit = check_limit(limit)
-    sorted_list_words = [word for word in list_words if sort_limit(word)]
+    sort_limit = lambda str : len(str) > limit
+    sorted_list_words = [word for word in args[0].split() if sort_limit(word)]
     print(sorted_list_words)
+    return 
 
 if __name__ == "__main__":
     main()    
