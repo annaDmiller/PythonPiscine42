@@ -1,7 +1,5 @@
-"""Take a single string argument and displays the sums of its upper-case characters, 
-lower-case characters, punctuation characters, digits, and spaces."""
-
 import sys as sys
+
 
 def main():
     """Read one input string and print character category counts.
@@ -16,16 +14,16 @@ def main():
 
     if size_args > 1:
         print("AssertionError: more than one argument is provided")
-        return 
-    
+        return
+
     if size_args == 0:
         print("What is the next to count?")
         try:
             line = sys.stdin.read()
-        except:
+        except (KeyboardInterrupt):
             print("An exception occured")
-            return 
-        
+            return
+
     else:
         line = args[0]
 
@@ -42,7 +40,8 @@ def main():
     print(num_spaces, "spaces")
     print(num_digits, "digits")
 
-    return 
+    return
+
 
 if __name__ == "__main__":
-    main()    
+    main()
