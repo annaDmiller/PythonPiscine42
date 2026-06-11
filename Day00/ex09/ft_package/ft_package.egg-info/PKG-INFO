@@ -1,0 +1,37 @@
+Metadata-Version: 2.4
+Name: ft_package
+Version: 0.0.1
+Summary: A sample test package
+Author-email: amelniko <amelniko@student.42.fr>
+License-Expression: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+# ft_package
+
+A sample test package.
+
+## Installation
+
+```bash
+pip install ./dist/ft_package-0.0.1.tar.gz
+```
+
+or
+
+```bash
+pip install ./dist/ft_package-0.0.1-py3-none-any.whl
+```
+
+## Usage
+
+```python
+from ft_package import count_in_list
+
+print(count_in_list(["toto", "tata", "toto"], "toto"))  # 2
+print(count_in_list(["toto", "tata", "toto"], "tutu"))  # 0
+```
