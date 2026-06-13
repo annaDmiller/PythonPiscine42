@@ -1,30 +1,20 @@
 import sys as sys
 
-args = sys.argv[1:]
-num_args = len(args)
+num_args = len(sys.argv)
 
-if num_args > 1:
+if num_args > 2:
     print("AssertionError: more than one argument is provided")
-    sys.exit(1)
 
-if num_args == 0:
-    print("")
-    sys.exit(0)
+elif num_args == 2:
+    try:
+        value = int(sys.argv[1])
 
-i = 0
-while i < len(args[0]):
-    char = args[0][i]
-    if char < '0' or char > '9':
-        if char == '-' and i == 0:
-            i += 1
-            continue
+        if value % 2 == 0:
+            print("I'm Even.")
+        else:
+            print("I'm Odd.")
+
+    except ValueError:
         print("AssertionError: argument is not an integer")
-        sys.exit(1)
-
-    i += 1
-
-number = int(args[0])
-if number % 2 == 0:
-    print("I'm Even.")
-else:
-    print("I'm Odd.")
+    except AssertionError as err:
+        print(err)

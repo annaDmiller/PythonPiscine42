@@ -1,7 +1,8 @@
 def NULL_not_found(object: any) -> int:
+
     obj_type = type(object)
 
-    if object != object:
+    if object != object: #-> to define NaN value, the easiest way
         print("Cheese:", object, obj_type)
         return 0
 
@@ -9,9 +10,6 @@ def NULL_not_found(object: any) -> int:
         case None:
             print("Nothing:", object, obj_type)
         
-        case "nan":
-            print("Cheese:", object, obj_type)
-
         case False:
             print("Fake:", object, obj_type)
         
