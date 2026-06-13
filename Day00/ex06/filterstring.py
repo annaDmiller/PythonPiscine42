@@ -1,4 +1,5 @@
 import sys as sys
+from ft_filter import ft_filter
 
 
 def main():
@@ -10,27 +11,22 @@ def main():
     If the number of arguments is different from 2, or if the type
     of any argument is wrong, prints AssertionError.
     """
+    args_num = len(sys.argv)
+
+    if args_num != 3:
+        sys.exit("AssertionError: the arguments are bad")
+
+    elif not (sys.argv[1] != ""
+              and all(ch.isalnum() or ch.isspace() for ch in sys.argv[1])):
+        sys.exit("AssertionError: the arguments are bad")
+
     args = sys.argv[1:]
-    args_num = len(args)
-
-    if args_num != 2:
-        print("AssertionError: the arguments are bad")
-        sys.exit(1)
-
-    if not (args[0] != ""
-            and all(ch.isalpha() or ch.isspace() for ch in args[0])):
-        print("AssertionError: the arguments are bad")
-        sys.exit(1)
-
     try:
         limit = int(args[1])
     except (ValueError, TypeError):
-        print("AssertionError: the arguments are bad")
-        sys.exit(1)
+        sys.exit("AssertionError: the arguments are bad")
 
-    sort_limit = lambda str: len(str) > limit
-    sorted_list_words = [word for word in args[0].split() if sort_limit(word)]
-    print(sorted_list_words)
+    print(ft_filter(lambda str: len(str) > limit, args[0].split()))
     return
 
 

@@ -55,8 +55,7 @@ def main():
     if size_args != 1 or not (args[0] != ""
                               and all(ch == ' ' or ch.isalnum()
                                       for ch in args[0])):
-        print("AssertionError: the arguments are bad")
-        sys.exit(1)
+        sys.exit("AssertionError: the arguments are bad")
 
     print("".join(NESTED_MORSE[ch] for ch in args[0].upper()).rstrip())
     return

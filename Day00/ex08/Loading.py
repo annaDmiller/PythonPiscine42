@@ -11,7 +11,7 @@ def ft_tqdm(lst: range) -> None:
     """
     total = len(lst)
     terminal_width = os.get_terminal_size().columns
-    left = len(f"100%|| {total}/{total}[00:01<00:00, 191.61it/s]")
+    left = len(f"100%|| {total}/{total} [00:01<00:00, 191.61it/s]")
     bar_len = terminal_width - left - 1
 
     if bar_len < 1:
@@ -20,15 +20,7 @@ def ft_tqdm(lst: range) -> None:
     for i, item in enumerate(lst, 1):
         percent = int(i / total * 100)
         filled_part = int((i / total) * bar_len)
-
-        if i < total:
-            if filled_part > 0:
-                bar = "█" * (filled_part - 1) + " " * (bar_len - filled_part)
-            else:
-                bar = " " * (bar_len - 1)
-        else:
-            bar = "█" * bar_len
-
+        bar = "█" * (filled_part) + " " * (bar_len - filled_part)
         total_line = f"\r{percent}%|{bar}| {i}/{total}"
         os.write(1, total_line.encode())
         yield item

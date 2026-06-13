@@ -9,23 +9,22 @@ def main():
     """
     PUNCT = r"""!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"""
 
-    args = sys.argv[1:]
-    size_args = len(args)
+    size_args = len(sys.argv)
 
-    if size_args > 1:
+    if size_args > 2:
         print("AssertionError: more than one argument is provided")
         return
 
-    if size_args == 0:
+    elif size_args == 1:
         print("What is the next to count?")
         try:
             line = sys.stdin.read()
-        except (KeyboardInterrupt):
-            print("An exception occured")
+        except KeyboardInterrupt:
+            print("An exception occured - input is interrupted")
             return
 
     else:
-        line = args[0]
+        line = sys.argv[1]
 
     num_upper = sum(ch.isupper() for ch in line)
     num_lower = sum(ch.islower() for ch in line)
