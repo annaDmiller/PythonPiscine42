@@ -1,31 +1,16 @@
-def verify_int_or_float(lst: list[int | float]) -> bool:
+import numpy as np
+
+
+def is_valid_number_list(lst: list[int | float]) -> bool:
     """
-    verify_int_or_float(lst: list[int | float]) -> bool
+    is_valid_number_list(lst: list[int | float]) -> bool
 
     Verifies if the values in the given list are integers or floats.
-    Returns True if all values are integers or floats. Otherwise, returns False.
+    Returns True if all values are integers or floats.
+    Otherwise, returns False.
     """
-    for item in lst:
-        match item:
-            case int():
-                continue
-
-            case float():
-                continue
-
-            case _:
-                return False
-
-    return True
-
-def check_negative_zero(lst: list[int | float]) -> bool:
-    """
-    check_negative(lst: list[int | float]) -> bool
-
-    Verifies if the values in the given list are negative or zero.
-    Returns True if all values are positive. Otherwise, returns False.
-    """
-    return all(int(lst[ind]) <= 0 for ind in range(len(lst)))
+    return (isinstance(lst, list)
+            and all(type(x) in (int, float) for x in lst))
 
 
 def give_bmi(height: list[int | float],
@@ -36,36 +21,20 @@ def give_bmi(height: list[int | float],
     Returns the list of values of Body Mass index
     calculated based on the given arguments.
     """
-    if height is None or weight is None:
-        print("At least 1 of the argument is None. Please, review.")
-        return None
+    if (not is_valid_number_list(height) or not is_valid_number_list(weight)):
+        raise TypeError("Height and weight must be lists of int or float.")
 
     if len(height) != len(weight):
-        print("The range of two lists is not the same. Please, review them.")
-        return None
+        raise AssertionError("Height and weight must have the same length.")
 
-    try:
-        assert verify_int_or_float(height)
-        assert verify_int_or_float(weight)
-    except AssertionError:
-        print("The values in the arguments can be only int or float.", end="")
-        print(" Please, review them.")
-        return None
-    
-    try:
-        assert check_negative_zero(height)
-        assert check_negative_zero(weight)
-    except AssertionError:
-        print("Height/weight values must be positive. Please, review them.")
-        return None
+    h_nparr = np.array(height, dtype=float)
+    w_nparr = np.array(weight, dtype=float)
 
-    try:
-        return list((weight[ind] / (height[ind] * height[ind])
-                 for ind in range(len(weight))))
-    except ZeroDivisionError:
-        print("The height can't be 0 (division by 0). Please, review.")
-        return None
+    if np.any(h_nparr <= 0) or np.any(w_nparr <= 0):
+        raise ValueError("Height and weight values must be positive.")
 
+    bmi_nparr = w_nparr / (h_nparr ** 2)
+    return bmi_nparr.tolist()
 
 
 def apply_limit(bmi: list[int | float], limit: int) -> list[bool]:
@@ -75,25 +44,15 @@ def apply_limit(bmi: list[int | float], limit: int) -> list[bool]:
     Verifies if the given values of the bmi list are above or below the limit.
     Returns True if the value is above the limit. Otherwise, returns False.
     """
-    if bmi is None or limit is None:
-        print("At least 1 of the argument is None. Please, review.")
-        return None
-    
-    try:
-        assert verify_int_or_float(bmi)
-        int_limit = int(limit)
-    except AssertionError:
-        print("The values of the bmi can be only int or float.", end="")
-        print("Please, review them.")
-        return None
-    except (TypeError, ValueError):
-        print("Limit value is incorrect. Please, review it.")
-        return None
-    
-    try:
-        assert check_negative_zero(bmi)
-    except AssertionError:
-        print("The values of bmi must be positive. Please, review them.")
-        return None
-    else:
-        return list(bmi[ind] > int_limit for ind in range(len(bmi)))
+    if not is_valid_number_list(bmi):
+        raise TypeError("BMI must be a list of int or float.")
+
+    if type(limit) is not int:
+        raise TypeError("Limit must be an int value.")
+
+    bmi_nparr = np.arr(bmi, dtype=float)
+
+    if np.any(bmi_nparr <= 0):
+        raise ValueError("BMI values can't be negative or zero.")
+
+    return (bmi_nparr > limit).tolist()
