@@ -1,5 +1,4 @@
 from load_image import ft_load
-import numpy as np
 import matplotlib.pyplot as plt
 
 
@@ -22,7 +21,6 @@ def main():
     except Exception as e:
         print(f"Error: {e}")
     return
-
 
 
 if __name__ == "__main__":
