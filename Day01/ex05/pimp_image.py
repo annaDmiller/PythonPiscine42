@@ -25,6 +25,7 @@ def is_valid_arr(arr: np.array) -> bool:
 
     return True
 
+
 def ft_invert(arr: np.array) -> np.array:
     """
     ft_invert(arr: np.array) -> np.array
