@@ -12,7 +12,7 @@ def main():
         rgb_arr = ft_load(image_path)
         print(rgb_arr)
 
-        zoomed_arr = rgb_arr[200:500, 200:500, 0:1]
+        zoomed_arr = rgb_arr[100:500, 500:900, 0:1]
         print("New shape after slicing:", zoomed_arr.shape, end="")
         print(f" or ({zoomed_arr.shape[0]}, {zoomed_arr.shape[1]})")
         print(zoomed_arr)
