@@ -12,11 +12,11 @@ def main():
         rgb_arr = ft_load(image_path)
         print(rgb_arr)
 
-        zoomed_arr = rgb_arr[100:500, 100:500, 0:1]
+        zoomed_arr = rgb_arr[200:500, 200:500, 0:1]
         print("New shape after slicing:", zoomed_arr.shape)
         print(zoomed_arr)
 
-        plt.imshow(zoomed_arr[:, :, 0])
+        plt.imshow(zoomed_arr[:, :, 0], cmap="gray")
         plt.show()
     except Exception as e:
         print(f"Error: {e}")
