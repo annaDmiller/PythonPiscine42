@@ -25,7 +25,7 @@ def give_bmi(height: list[int | float],
         raise TypeError("Height and weight must be lists of int or float.")
 
     if len(height) != len(weight):
-        raise AssertionError("Height and weight must have the same length.")
+        raise ValueError("Height and weight must have the same length.")
 
     h_nparr = np.array(height, dtype=float)
     w_nparr = np.array(weight, dtype=float)
