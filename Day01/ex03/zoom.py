@@ -13,7 +13,8 @@ def main():
         print(rgb_arr)
 
         zoomed_arr = rgb_arr[200:500, 200:500, 0:1]
-        print("New shape after slicing:", zoomed_arr.shape)
+        print("New shape after slicing:", zoomed_arr.shape, end="")
+        print(f" or ({zoomed_arr.shape[0]}, {zoomed_arr.shape[1]})")
         print(zoomed_arr)
 
         plt.imshow(zoomed_arr[:, :, 0], cmap="gray")
