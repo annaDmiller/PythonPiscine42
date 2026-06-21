@@ -50,7 +50,7 @@ def apply_limit(bmi: list[int | float], limit: int) -> list[bool]:
     if type(limit) is not int:
         raise TypeError("Limit must be an int value.")
 
-    bmi_nparr = np.arr(bmi, dtype=float)
+    bmi_nparr = np.array(bmi, dtype=float)
 
     if np.any(bmi_nparr <= 0):
         raise ValueError("BMI values can't be negative or zero.")
