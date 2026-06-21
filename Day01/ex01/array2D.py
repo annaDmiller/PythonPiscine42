@@ -27,7 +27,7 @@ def slice_me(family: list, start: int, end: int) -> list:
     if len(family) == 0:
         raise ValueError("2D array can't be empty.")
 
-    if not (isinstance(row, list) for row in family):
+    if not all(isinstance(row, list) for row in family):
         raise TypeError("2D array must contain lists only.")
 
     if not all(len(row) == len(family[0]) for row in family):
