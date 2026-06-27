@@ -24,8 +24,8 @@ def to_number(val: str) -> int:
 
 def main():
     """
-    Loads the CSV file with the data and displays life expectancy
-    information of France in the graph.
+    Loads the CSV file with the data and displays comparison of
+    populations between France and another country.
     """
     data = load("population_total.csv")
     if data is None:
