@@ -11,15 +11,16 @@ def to_number(val: str) -> int:
     Example of usage: 3.28M => 3280000 or 400k => 400000.
     """
     filtered = str(val).strip().lower()
-    
+
     if filtered.endswith("k"):
         return float(filtered[:-1]) * 1_000
     if filtered.endswith("m"):
         return float(filtered[:-1]) * 1_000_000
     if filtered.endswith("b"):
         return float(filtered[:-1]) * 1_000_000_000
-    
+
     return float(filtered)
+
 
 def main():
     """
@@ -29,10 +30,10 @@ def main():
     data = load("population_total.csv")
     if data is None:
         return
-    
+
     countries = ["France", "Russia"]
     if not all(countries[ind] in data.index for ind in range(len(countries))):
-        print(f"No data for any of the specified countries: {campus_country} or {country}")
+        print("No data for any of the chosen countries. Please, review.")
         return
 
     max_val = 0
@@ -41,7 +42,8 @@ def main():
         info = info[(info.index.astype(int) <= 2050)]
         years = info.index.astype(int)
         values = [to_number(val) for val in info.values]
-        if max(values) > max_val : max_val = int(max(values))
+        if max(values) > max_val:
+            max_val = int(max(values))
         plt.plot(years, values, label=country)
 
     plt.title("Population Projections")
