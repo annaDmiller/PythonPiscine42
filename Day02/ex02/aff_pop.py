@@ -47,17 +47,18 @@ def main():
         plt.plot(years, values, label=country)
 
     plt.title("Population Projections")
+    
     plt.xlabel("Year")
     plt.xticks(range(years.min(), years.max(), 40))
 
     plt.ylabel("Population")
-    step = 20_000_000
-    y_ticks = range(0, max_val + step, step)
+    y_ticks = range(0, max_val + 20_000_000, 20_000_000)
     y_labels = [f"{int(t/1_000_000)}M" for t in y_ticks]
     plt.yticks(y_ticks[1:-1], y_labels[1:-1])
 
     plt.legend()
     plt.show()
+    return
 
 
 if __name__ == "__main__":

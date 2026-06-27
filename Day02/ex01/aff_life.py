@@ -22,10 +22,14 @@ def main():
 
     plt.plot(years, values, label=campus_country)
     plt.title(f"{campus_country} Life expectancy Projections")
+
     plt.xlabel("Year")
-    plt.xticks(range(years.min(), years.max() + 1, 40))
+    plt.xticks(range(years.min(), years.max(), 40))
+
     plt.ylabel("Life expectancy")
+    
     plt.show()
+    return
 
 
 if __name__ == "__main__":
