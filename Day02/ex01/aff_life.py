@@ -17,8 +17,12 @@ def main():
         return
 
     country_data = data.loc[campus_country]
-    years = country_data.index.astype(int)
-    values = country_data.values.astype(float)
+    try:
+        years = country_data.index.astype(int)
+        values = country_data.values.astype(float)
+    except TypeError:
+        print("Error when taking value from CSV file (not float/int).")
+        return
 
     plt.plot(years, values, label=campus_country)
     plt.title(f"{campus_country} Life expectancy Projections")
@@ -27,7 +31,7 @@ def main():
     plt.xticks(range(years.min(), years.max(), 40))
 
     plt.ylabel("Life expectancy")
-    
+
     plt.show()
     return
 

@@ -38,8 +38,12 @@ def main():
         print(f"No data for this year: {year}")
         return
 
-    year_income = [to_number(val) for val in income[year]]
-    year_life = life_expect[year].astype(float)
+    try:
+        year_income = [to_number(val) for val in income[year]]
+        year_life = life_expect[year].astype(float)
+    except TypeError:
+        print("Error when taking value from CSV file (not float/int).")
+        return
 
     plt.scatter(year_income, year_life, label=f"{year}")
     plt.title(f"{year}")
@@ -51,9 +55,9 @@ def main():
     plt.xticks(xticks, xlabels)
 
     plt.ylabel("Life expectancy")
-    
+
     plt.show()
-    return 
+    return
 
 
 if __name__ == "__main__":

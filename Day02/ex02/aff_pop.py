@@ -32,22 +32,25 @@ def main():
         return
 
     countries = ["France", "Russia"]
-    if not all(countries[ind] in data.index for ind in range(len(countries))):
-        print("No data for any of the chosen countries. Please, review.")
-        return
-
     max_val = 0
     for country in countries:
-        info = data.loc[country]
-        info = info[(info.index.astype(int) <= 2050)]
-        years = info.index.astype(int)
-        values = [to_number(val) for val in info.values]
-        if max(values) > max_val:
-            max_val = int(max(values))
-        plt.plot(years, values, label=country)
+        if country in data.index:
+            info = data.loc[country]
+            info = info[(info.index.astype(int) <= 2050)]
+
+            try:
+                years = info.index.astype(int)
+                values = [to_number(val) for val in info.values]
+            except TypeError:
+                print("Error when taking value from CSV file (not float/int).")
+                return
+
+            if max(values) > max_val:
+                max_val = int(max(values))
+            plt.plot(years, values, label=country)
 
     plt.title("Population Projections")
-    
+
     plt.xlabel("Year")
     plt.xticks(range(years.min(), years.max(), 40))
 
