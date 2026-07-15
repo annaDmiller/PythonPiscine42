@@ -27,7 +27,7 @@ class Stark(Character):
     A member of Stark family character which inherits from Character
     class.
     """
-    def __init__(elf, first_name: str, is_alive: bool = True):
+    def __init__(self, first_name: str, is_alive: bool = True):
         """
         Initializes the Character of Stark family.
         """
