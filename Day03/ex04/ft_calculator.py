@@ -1,14 +1,29 @@
 class calculator:
-#your code here
+    """A calculator that allows to do calculations of 2 vectors:
 
-    # decorator
+    -dot product
+
+    -addition
+
+    -substraction"""
+
+    @staticmethod
     def dotproduct(V1: list[float], V2: list[float]) -> None:
+        """dotproduct(V1: list[float], V2: list[float]) -> None
+
+        """
         pass
 
-    # decorator
+    @staticmethod
     def add_vec(V1: list[float], V2: list[float]) -> None:
+        """add_vec(V1: list[float], V2: list[float]) -> None
+
+        """
         pass
 
-    # decorator
+    @staticmethod
     def sous_vec(V1: list[float], V2: list[float]) -> None:
+        """sous_vec(V1: list[float], V2: list[float]) -> None
+
+        """
         pass

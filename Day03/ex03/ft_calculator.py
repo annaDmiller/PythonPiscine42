@@ -1,6 +1,15 @@
 class calculator:
-    """Class that contains a vector of numbers with which math operations
-    can be done"""
+    """A calculator that contains a vector of numbers and allows
+    to do calculations with a scalar:
+
+    -add
+
+    -multiplication
+
+    -substraction
+
+    -division"""
+
     def __init__(self, vector: list[int | float]):
         """__init__(self, vector: list[int | float])
 
