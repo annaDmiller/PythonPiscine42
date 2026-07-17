@@ -5,10 +5,6 @@ class calculator:
         """__init__(self, vector: list[int | float])
         
         Initializes a vector from the list shared as parameter."""
-        if not isinstance(vector, list):
-            raise TypeError("The calculator takes only the vector of numbers.")
-        if not all(type(x) in (int, float) for x in vector):
-            raise TypeError("Values of the vector must be int or float")
         self.values = vector
 
     def __add__(self, object: int | float) -> None:
@@ -16,9 +12,6 @@ class calculator:
         
         Adds a scalar value given as parameter to the values from the
         vector saved in calculator."""
-        if type(object) not in (int, float):
-            raise TypeError("The addition can be done only with int/float" +
-                            " number.")
         self.values = [x + object for x in self.values]
         print(self.values)
 
@@ -27,9 +20,6 @@ class calculator:
         
         Multiplies the values of the vector saved in calculator
         with a scalar value given as parameter."""
-        if type(object) not in (int, float):
-            raise TypeError("The multiplication can be done only with" +
-                            " int/float number.")
         self.values = [x * object for x in self.values]
         print(self.values)
 
@@ -38,9 +28,6 @@ class calculator:
         
         Substracts a scalar value given as parameter from the values
         of the vector saved in calculator."""
-        if type(object) not in (int, float):
-            raise TypeError("The substraction can be done only with " +
-                            "int/float number.")
         self.values = [x - object for x in self.values]
         print(self.values)
 
@@ -49,8 +36,9 @@ class calculator:
         
         Divides values from the vector saved in the calculater with
         a scalar value given as parameter."""
-        if type(object) not in (int, float):
-            raise TypeError("The division can be done only with int/float " +
-                            "number.")
-        self.values = [x / object for x in self.values]
-        print(self.values)
+        try:
+            self.values = [x / object for x in self.values]
+        except ZeroDivisionError:
+            print("Can't divide by zero.")
+        else:
+            print(self.values)
