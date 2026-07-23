@@ -127,27 +127,19 @@ def ft_statistics(*args: any, **kwargs: any) -> None:
     if len(kwargs) == 0:
         return
 
+    actions = {
+        "mean": calculate_mean,
+        "median": calculate_median,
+        "quartile": calculate_quartile,
+        "std": calculate_std,
+        "var": calculate_var,
+    }
+
     list_args = list(args)
     list_args.sort()
-    for key, action in kwargs.items():
-        action = action.lower()
-        match action:
-            case "mean":
-                calculate_mean(list_args)
-
-            case "median":
-                calculate_median(list_args)
-
-            case "quartile":
-                calculate_quartile(list_args)
-
-            case "std":
-                calculate_std(list_args)
-
-            case "var":
-                calculate_var(list_args)
-
-            case _:
-                continue
+    for action in kwargs.values():
+        func = actions.get(action.lower())
+        if func:
+            func(list_args)
 
     return
