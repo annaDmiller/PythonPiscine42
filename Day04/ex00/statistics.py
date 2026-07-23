@@ -6,38 +6,56 @@ def print_error() -> None:
     return
 
 
-def calculate_mean(lst: list([int | float])) -> None:
-    """calculate_mean(lst: list([int | float])) -> None
+def mean_of_list(lst: list[int | float]) -> int | float:
+    """mean_of_list(lst: list[int | float]) -> int | float
 
-    Calculates the mean of *args values and prints the result.
-    If there are no arguments passed, prints an error."""
-    if lst == None or len(lst) == 0:
-        return print_error()
-
-    mean = sum(num for num in lst) / len(lst)
-    print(f"mean : {mean}")
-    return
+    Calculates the mean of the list of numbers and
+    returns it."""
+    return sum(num for num in lst) / len(lst)
 
 
 def median_of_list(lst: list([int | float])) -> [int | float]:
     """median_of_list(lst: list([int | float])) -> [int | float]
 
-    Calculates the median value of the list of numbers.
-    """
+    Calculates the median value of the list of numbers and
+    returns it."""
     size_list = len(lst)
     if size_list % 2 == 0:
         return (lst[size_list // 2 - 1]
-                       + lst[size_list // 2]) / 2
+                + lst[size_list // 2]) / 2
     else:
         return lst[size_list // 2]
+
+
+def var_of_list(lst: list([int | float])) -> [int | float]:
+    """var_of_list(lst: list([int | float])) -> [int | float]
+
+    Calculates the variance of the list of numbers and
+    returns it."""
+    mean = mean_of_list(lst)
+    lst_temp = [(num - mean) ** 2 for num in lst]
+    return mean_of_list(lst_temp)
+
+
+def calculate_mean(lst: list([int | float])) -> None:
+    """calculate_mean(lst: list([int | float])) -> None
+
+    Calculates the mean of list of numbers and prints the result.
+    If the list is None or empty, prints an error."""
+    if lst is None or len(lst) == 0:
+        return print_error()
+
+    mean = mean_of_list(lst)
+    print(f"mean : {mean}")
+    return
 
 
 def calculate_median(lst: list([int | float])) -> None:
     """calculate_median(lst: list([int | float])) -> None
 
-    Calculates the meridian of *args values and prints the result.
-    If there are no arguments passed, prints an error."""
-    if lst == None or len(lst) == 0:
+    Calculates the median of list of numbers and prints the result.
+    If the list is None or empty, prints an error."""
+    if lst is None or len(lst) == 0:
         return print_error()
 
     median = median_of_list(lst)
@@ -47,11 +65,11 @@ def calculate_median(lst: list([int | float])) -> None:
 
 def calculate_quartile(lst: list([int | float])) -> None:
     """calculate_quartile(lst: list([int | float])) -> None
-    
-    Calculates the quartiles (25% and 75%) of *args values
-    and prints the result. If there are no arguments passed,
-    prints an error."""
-    if lst == None or len(lst) == 0:
+
+    Calculates the quartiles (25% and 75%) of list of
+    numbers and prints the result. If the list is None or
+    empty, prints an error."""
+    if lst is None or len(lst) == 0:
         return print_error()
 
     middle_ind = len(lst) // 2
@@ -69,32 +87,37 @@ def calculate_quartile(lst: list([int | float])) -> None:
 
 def calculate_std(lst: list([int | float])) -> None:
     """calculate_std(*args: [int | float]) -> None
-    
-    Calculates the standard deviation of *args values
-    and prints the result. If there are no arguments passed,
-    prints an error."""
-    if lst == None or len(lst) == 0:
+
+    Calculates the standard deviation of list of
+    numbers and prints the result. If the list is None
+    or empty, prints an error."""
+    if lst is None or len(lst) == 0:
         return print_error()
 
-    mean = sum(num for num in lst) / len(lst)
+    std = var_of_list(lst) ** 0.5
+    print(f"std : {std}")
+    return
 
 
 def calculate_var(lst: list([int | float])) -> None:
     """calculate_var(lst: list([int | float])) -> None
-    
-    Calculates the variance of *args values and prints the
-    result. If there are no arguments passed, prints an
-    error."""
 
-    if lst == None or len(lst) == 0:
+    Calculates the variance of list of numbers and
+    prints the result. If the list is None or empty,
+    prints an error."""
+    if lst is None or len(lst) == 0:
         return print_error()
+
+    var = var_of_list(lst)
+    print(f"var : {var}")
+    return
 
 
 def ft_statistics(*args: any, **kwargs: any) -> None:
     """ft_statistics(*args: Any, **kwargs: Any) -> None
 
     Takes any amount of numbers (*args parameter) and makes
-    the Mean, Median, Quartiles, Standard Deviation and 
+    the Mean, Median, Quartiles, Standard Deviation and
     Variance according to the request (**kwargs ask). Prints
     the result into the standard output."""
     if len(args) != 0 and not all(type(arg) in (int, float)
@@ -126,5 +149,5 @@ def ft_statistics(*args: any, **kwargs: any) -> None:
 
             case _:
                 continue
-    
+
     return
