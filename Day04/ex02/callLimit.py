@@ -8,12 +8,14 @@ def callLimit(limit: int):
     def callLimiter(function):
         """callLimiter(function)
 
-        Takes a function as an argument to run it."""
+        Decorator. Allows to apply call limit to the
+        function."""
 
         def limit_function(*args: any, **kwargs: any):
             """limit_function(*args: any, **kwargs: any)
 
-            Runs the function."""
+            Runs the function. If the function is run more times
+            than the limit, the error message is displayed."""
             nonlocal count
             nonlocal limit
 

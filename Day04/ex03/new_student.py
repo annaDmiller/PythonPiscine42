@@ -13,5 +13,17 @@ def generate_id() -> str:
 
 @dataclass
 class Student:
-    """"""
-    pass
+    """A class that represents a student in the system.
+    Contains attributes:
+    
+    -name
+    
+    -surname
+    
+    -active flag
+    
+    -login
+    
+    -id"""
+    name: str
+    surname: str
