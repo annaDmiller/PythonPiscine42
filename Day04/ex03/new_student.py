@@ -15,15 +15,26 @@ def generate_id() -> str:
 class Student:
     """A class that represents a student in the system.
     Contains attributes:
-    
+
     -name
-    
+
     -surname
-    
-    -active flag
-    
-    -login
-    
-    -id"""
+
+    -active flag (default=True)
+
+    -login (non initializable): 1 letter of Name + surname
+
+    -id (non initializable): 15 random letters"""
     name: str
     surname: str
+    active: bool = field(default=True)
+    login: str = field(default="", init=False)
+    id: str = field(default="", init=False)
+
+    def __post_init__(self):
+        """__post_init__(self)
+
+        Adds custom logic of login and id calculation and assignment
+        on init."""
+        self.login = self.name[0] + self.surname
+        self.id = generate_id()
